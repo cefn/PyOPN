@@ -291,7 +291,7 @@ class GetDataResponseFrame(Frame):
 
 
 ser = serial.Serial(
-    port='COM4',
+    port='/dev/ttyUSB0',
     baudrate=9600,
     parity=serial.PARITY_ODD,
     stopbits=serial.STOPBITS_ONE,
@@ -312,3 +312,6 @@ print res.param_value
 res = api.get_data()
 for barcode in res.barcodes:
     print '[{}] {} {}'.format(barcode.symbology, barcode.barcode, barcode.timestamp)
+    
+ser.flush()
+ser.close()
